@@ -1,0 +1,25 @@
+services:
+  # Servicio 1: Tu entorno de programación
+  jupyter-notebook-server:
+    build:
+      context: ./jupyter_server
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./mi_codigo:/workspace
+    # SOLUCIÓN DE RED: Forzamos a Docker a usar los servidores DNS de Google
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    environment:
+      # Recuerda: Sin "Bearer", solo la clave nvapi-...
+      - NVIDIA_API_KEY=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
+
+  # Servicio 2: Tu interfaz web
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8090:8090"
+    dns:
+      - 8.8.8.8
