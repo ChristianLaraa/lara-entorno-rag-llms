@@ -5,6 +5,7 @@ services:
       context: ./jupyter_server
     ports:
       - "8888:8888"
+      - "9012:9012"
     volumes:
       - ./mi_codigo:/workspace
     # SOLUCIÓN DE RED: Forzamos a Docker a usar los servidores DNS de Google
